@@ -1,0 +1,9 @@
+payload:
+  - '+.dns.google'
+  - '+.1dot1dot1.cloudflare-dns.com'
+  - '+.cloudflare-dns.com'
+  - '+.dot.sb'
+  - '+.dns.sb'
+  - '+.dns.umbrella.com'
+  - '+.doh.opendns.com'
+  - '+.dns.quad9.net'
