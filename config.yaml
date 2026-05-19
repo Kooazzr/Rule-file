@@ -116,7 +116,7 @@ proxy-groups:
   - {name: ✈️ Telegram, type: select, proxies: [🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
   - {name: 🎸 Spotify, type: select, proxies: [🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
   - {name: 💵 PayPal, type: select, proxies: [🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点, 🎯 直连]}
-  - {name: 💳 Bybit, type: select, proxies: [🇺🇲 美国节点]}
+  - {name: 💳 交易所, type: select, proxies: [🇺🇲 美国节点]}
   - {name: ☘️ 指纹浏览器, type: select, proxies: [🚀 手动选择, 🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点, 🎯 直连]}
   - {name: 🐳 漏网之鱼, type: select, proxies: [🚀 手动选择, 🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
 
@@ -126,8 +126,8 @@ rules:
   - RULE-SET,private_domain,🎯 直连
   - RULE-SET,apple_update_domain,REJECT
   - DOMAIN-SUFFIX,souajki.com,REJECT
-  - RULE-SET,bybit_domain,💳 Bybit
-  - RULE-SET,bybit_ip,💳 Bybit,no-resolve
+  - RULE-SET,exchange_domain,💳 交易所
+  - RULE-SET,bybit_ip,💳 交易所,no-resolve
   - RULE-SET,dns_proxy_domain,🚀 手动选择
   - RULE-SET,dns_proxy_ip,🚀 手动选择,no-resolve
   - RULE-SET,holamjj_domain,🍭 Website
@@ -178,7 +178,7 @@ rule-providers:
   spotify_domain: {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/spotify.mrs"}
   apple_update_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/apple_update.mrs"}
   website_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/website.mrs"}
-  bybit_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/bybit_domain.mrs"}
+  exchange_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/exchange_domain.mrs"}
   bybit_ip: {<<: *ip, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/bybit_ip.mrs"}
   dns_proxy_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/dns_proxy_domain.mrs"}
   dns_proxy_ip: {<<: *ip, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/dns_proxy_ip.mrs"}
