@@ -1,0 +1,187 @@
+proxy-providers:
+  Subscribe:
+    url: "https://xxx=clash"
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 3600
+    proxy: 
+
+# 节点信息
+proxies:
+  - name: ""
+    type: vless
+    server: ""
+    port: 443
+    uuid: ""
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: ""
+    reality-opts:
+      public-key: ""
+      short-id: ""
+    client-fingerprint: chrome
+
+  - {name: 🎯 直连, type: direct}
+
+# 全局配置 
+mixed-port: 7890
+allow-lan: true
+bind-address: "*"
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+log-level: warning
+disable-keep-alive: false
+keep-alive-idle: 15
+keep-alive-interval: 10
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+# 嗅探
+sniffer:
+  enable: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+  skip-dst-address:
+    - "91.108.0.0/16"
+    - "149.154.160.0/20"
+    - "149.154.164.0/22"
+    - "149.154.166.0/23"
+    - "149.154.168.0/22"
+    - "149.154.172.0/22"
+    - "95.161.64.0/20"
+    - "5.28.192.0/18"
+    - "130.49.0.0/16"
+
+# TUN配置
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack: ["any:53", "tcp://any:53"]
+  auto-route: false
+  auto-redirect: false
+  auto-detect-interface: false
+
+# DNS模块
+dns:
+  enable: true
+  cache-algorithm: arc
+  listen: 0.0.0.0:1053
+  ipv6: false
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  nameserver:
+    - https://8.8.8.8/dns-query#RULES
+    - https://1.1.1.1/dns-query#RULES
+  fake-ip-filter:
+    - "rule-set:fakeipfilter_domain"
+
+# 出站策略
+proxy-groups:
+  - {name: 🚀 手动选择, type: select, proxies: [🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
+  - {name: 🐷 日本节点, type: select, include-all: true, filter: "(?=.*(日|JP|(?i)Japan|韩|KR|(?i)Korea))^((?!(港|台|新|美)).)*$"}
+  - {name: 🌊 Google, type: select, proxies: [🚀 手动选择, 🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
+  - {name: 🇸🇬 新加坡节点, type: select, include-all: true, filter: "(?=.*(新加坡|坡|狮城|马来西亚|台湾|SG|Singapore|MY|TW))^((?!(台|日|韩|深|美)).)*$"}
+  - {name: 📺️ YouTube, type: select, proxies: [🚀 手动选择, 🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
+  - {name: 🇺🇲 美国节点, type: select, include-all: true, filter: "(?=.*(美国|英国|挪威|波兰|US|UK|NO|PL|DE))^((?!(港|台|韩|新|日)).)*$"}
+  - {name: 🛡️ AI, type: select, proxies: [🚀 手动选择, 🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
+  - {name: 🇭🇰 香港节点, type: select, include-all: true, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
+  - {name: 🍭 Website, type: select, proxies: [🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
+  - {name: 🖥️ Microsoft, type: select, proxies: [🚀 手动选择, 🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
+  - {name: 💖 GitHub, type: select, proxies: [🚀 手动选择, 🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
+  - {name: 🍎 Apple, type: select, proxies: [🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点, 🎯 直连]}
+  - {name: ✈️ Telegram, type: select, proxies: [🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
+  - {name: 🎸 Spotify, type: select, proxies: [🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
+  - {name: 💵 PayPal, type: select, proxies: [🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点, 🎯 直连]}
+  - {name: 💳 交易所, type: select, proxies: [🇺🇲 美国节点]}
+  - {name: ☘️ 指纹浏览器, type: select, proxies: [🚀 手动选择, 🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点, 🎯 直连]}
+  - {name: 🐳 漏网之鱼, type: select, proxies: [🚀 手动选择, 🐷 日本节点, 🇸🇬 新加坡节点, 🇺🇲 美国节点, 🇭🇰 香港节点]}
+
+# 规则匹配
+rules:
+  - RULE-SET,private_ip,🎯 直连,no-resolve
+  - RULE-SET,private_domain,🎯 直连
+  - RULE-SET,apple_update_domain,REJECT
+  - DOMAIN-SUFFIX,souajki.com,REJECT
+  - RULE-SET,exchange_domain,💳 交易所
+  - RULE-SET,bybit_ip,💳 交易所,no-resolve
+  - RULE-SET,dns_proxy_domain,🚀 手动选择
+  - RULE-SET,dns_proxy_ip,🚀 手动选择,no-resolve
+  - RULE-SET,holamjj_domain,🍭 Website
+  - RULE-SET,website_domain,🍭 Website
+  - RULE-SET,browser_domain,☘️ 指纹浏览器
+  - RULE-SET,spotify_domain,🎸 Spotify
+  - RULE-SET,ai,🛡️ AI
+  - RULE-SET,github_domain,💖 GitHub
+  - RULE-SET,youtube_domain,📺️ YouTube
+  - RULE-SET,google_domain,🌊 Google
+  - RULE-SET,microsoft_domain,🖥️ Microsoft
+  - RULE-SET,apple_domain,🍎 Apple
+  - RULE-SET,swiftgram_domain,✈️ Telegram
+  - RULE-SET,telegram_domain,✈️ Telegram
+  - RULE-SET,paypal_domain,💵 PayPal
+  - RULE-SET,apple_ip,🍎 Apple,no-resolve
+  - RULE-SET,google_ip,🌊 Google,no-resolve
+  - RULE-SET,telegram_ip,✈️ Telegram,no-resolve
+  - RULE-SET,geolocation-!cn,🚀 手动选择
+  - RULE-SET,cn_domain,🎯 直连
+  - RULE-SET,cn_ip,🎯 直连
+  - MATCH,🐳 漏网之鱼
+
+# 规则集
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+  local: &local {type: file, behavior: domain, format: mrs}
+rule-providers: 
+  fakeipfilter_domain: {<<: *domain, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
+  private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
+  ai: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
+  youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
+  google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
+  github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
+  telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
+  paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
+  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+  apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
+  geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
+  cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  private_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
+  cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
+  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
+  apple_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
+  spotify_domain: {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/spotify.mrs"}
+  apple_update_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/apple_update.mrs"}
+  website_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/website.mrs"}
+  exchange_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/exchange_domain.mrs"}
+  bybit_ip: {<<: *ip, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/bybit_ip.mrs"}
+  dns_proxy_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/dns_proxy_domain.mrs"}
+  dns_proxy_ip: {<<: *ip, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/dns_proxy_ip.mrs"}
+  swiftgram_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/swiftgram.mrs"}
+  browser_domain: { <<: *local, path: "./rules/browser.mrs" }
+  holamjj_domain: { <<: *local, path: "./rules/holamjj.mrs" }
