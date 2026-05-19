@@ -176,12 +176,12 @@ rule-providers:
   telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   apple_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
   spotify_domain: {<<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/spotify.mrs"}
-  apple_update_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/apple_update.mrs"}
-  website_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/website.mrs"}
-  exchange_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/exchange_domain.mrs"}
-  bybit_ip: {<<: *ip, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/bybit_ip.mrs"}
-  dns_proxy_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/dns_proxy_domain.mrs"}
-  dns_proxy_ip: {<<: *ip, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/dns_proxy_ip.mrs"}
-  swiftgram_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/swiftgram.mrs"}
+  apple_update_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/geo/geosite/apple_update.mrs"}
+  website_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/geo/geosite/website.mrs"}
+  exchange_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/geo/geosite/exchange_domain.mrs"}
+  bybit_ip: {<<: *ip, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/geo/geoip/bybit_ip.mrs"}
+  dns_proxy_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/geo/geosite/dns_proxy_domain.mrs"}
+  dns_proxy_ip: {<<: *ip, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/geo/geoip/dns_proxy_ip.mrs"}
+  swiftgram_domain: {<<: *domain, url: "https://raw.githubusercontent.com/Kooazzr/Rule-file/main/geo/geosite/swiftgram.mrs"}
   browser_domain: { <<: *local, path: "./rules/browser.mrs" }
   holamjj_domain: { <<: *local, path: "./rules/holamjj.mrs" }
